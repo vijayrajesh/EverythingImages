@@ -81,6 +81,8 @@ public partial class MainWindow : Window
         new OptionsWindow(_s) { Owner = this }.ShowDialog();
     }
 
+    void About_Click(object sender, RoutedEventArgs e) => new AboutWindow(_s) { Owner = this }.ShowDialog();
+
     void StopBanner_Click(object sender, RoutedEventArgs e) => _s.StopBanner();
     void CloseInspector_Click(object sender, RoutedEventArgs e) => _s.Select(null);
     void OpenSelected_Click(object sender, RoutedEventArgs e) { if (_s.Selected != null) _s.OpenFile(_s.Selected.Record.Path); }

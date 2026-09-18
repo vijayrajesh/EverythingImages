@@ -140,6 +140,7 @@
                         <TextBlock Text="{Binding DescribeAllLabel, StringFormat='✨ {0}'}" />
                     </Button>
                     <Button Click="Options_Click" Margin="8,0,0,0" Content="⚙ Options" ToolTip="GPU or CPU, AI models, the description prompt, OCR" />
+                    <Button Click="About_Click" Margin="8,0,0,0" Content="ⓘ" ToolTip="About EverythingImages" AutomationProperties.Name="About" />
                     <StackPanel Orientation="Horizontal" Margin="12,0,0,0">
                         <RadioButton Style="{StaticResource Chip}" GroupName="view" IsChecked="True" Checked="GridView_Checked" Content="▦" ToolTip="Grid" Margin="0,0,4,0" />
                         <RadioButton Style="{StaticResource Chip}" GroupName="view" Checked="ListView_Checked" Content="☰" ToolTip="List" Margin="0" />
