@@ -7,7 +7,7 @@ public static class Paths
 
     static string AppData => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
-    /// <summary>A portable copy (build-installer.bat puts portable.txt beside the
+    /// <summary>A portable copy (release.bat puts portable.txt beside the
     /// exe) keeps everything in a data folder next to itself, so the whole
     /// folder can move to another PC or a USB drive.</summary>
     public static bool IsPortable => File.Exists(System.IO.Path.Combine(AppContext.BaseDirectory, "portable.txt"));

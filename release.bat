@@ -2,8 +2,8 @@
 rem ===========================================================================
 rem  Builds everything EverythingImages ships, and all of it is portable:
 rem
-rem    build-installer.bat           folder, zip and portable installer
-rem    build-installer.bat nosetup   folder and zip only, no Inno Setup needed
+rem    release.bat           folder, zip and portable installer
+rem    release.bat nosetup   folder and zip only, no Inno Setup needed
 rem
 rem  Out come three things in release\, all the same copy of the app:
 rem
@@ -52,7 +52,7 @@ echo ========================================================
 
 echo.
 echo ==== Step 1: build, test and publish =======================
-call "%~dp0build_wpf.bat" nopause || goto :fail
+call "%~dp0build.bat" nopause || goto :fail
 if not exist release mkdir release
 
 echo.
@@ -99,7 +99,7 @@ echo.
 echo   Folder: release\%PNAME%
 for %%F in ("release\%PNAME%.zip") do echo   Zip:    %%~nxF  [%%~zF bytes]
 if defined DO_SETUP for %%F in ("release\EverythingImages-Portable-Setup-%VER%.exe") do echo   Setup:  %%~nxF  [%%~zF bytes]
-if not defined DO_SETUP echo   Setup:  skipped - "build-installer.bat" on its own builds it too.
+if not defined DO_SETUP echo   Setup:  skipped - "release.bat" on its own builds it too.
 echo.
 echo   None needs the .NET 10 Desktop Runtime installed first: the setup asks
 echo   before copying, and the exe offers the download when it is started.
@@ -122,7 +122,7 @@ echo [ERROR] Inno Setup 6 builds the portable installer. Install it with:
 echo.
 echo     winget install JRSoftware.InnoSetup
 echo.
-echo Or run "build-installer.bat nosetup" for just the folder and the zip.
+echo Or run "release.bat nosetup" for just the folder and the zip.
 goto :fail
 
 :copy_failed

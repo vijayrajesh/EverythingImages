@@ -18,5 +18,5 @@ runtime/
 *.dll
 *.pdb
 
-# build-installer.bat output (portable folder, zip, setup exe)
+# release.bat output (portable folder, zip, setup exe)
 release/

@@ -402,29 +402,6 @@ public sealed class AppState : Observable
         Say($"AI models will run on the {which.ToUpperInvariant()}.");
     }
 
-    /// <summary>A portable copy made before the engine was built in may still hold
-    /// the old 1.1 GB GPU download in its data folder; nothing uses it any more.
-    /// (Only a portable copy offers this.)</summary>
-    static string OldGpuDownloadDir => System.IO.Path.Combine(Paths.SharedDataDir(), "engines");
-
-    public long OldGpuDownloadBytes => Paths.IsPortable && System.IO.Directory.Exists(OldGpuDownloadDir)
-        ? new System.IO.DirectoryInfo(OldGpuDownloadDir).EnumerateFiles("*", System.IO.SearchOption.AllDirectories).Sum(f => f.Length)
-        : 0;
-
-    public async Task DeleteOldGpuDownloadAsync()
-    {
-        try
-        {
-            await Task.Run(() => System.IO.Directory.Delete(OldGpuDownloadDir, recursive: true));
-            Say("Deleted the old GPU download.");
-        }
-        catch (Exception e)
-        {
-            Say($"Could not delete the old GPU download: {e.Message}");
-        }
-        GpuChanged?.Invoke();
-    }
-
     // ---- describing ----------------------------------------------------------------------
     readonly Dictionary<string, LiveDescribe> _live = [];
     readonly Dictionary<string, DescribeResult> _lastResult = [];

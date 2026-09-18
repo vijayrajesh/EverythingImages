@@ -74,7 +74,7 @@ public static class Describer
         var bin = Paths.EngineDir();
         var exe = System.IO.Path.Combine(bin, EnginesLogic.MtmdExe);
         if (!File.Exists(exe))
-            throw new DownloadFailedException("This copy of EverythingImages is missing its AI engine. Rebuild it with build_wpf.bat.");
+            throw new DownloadFailedException("This copy of EverythingImages is missing its AI engine. Rebuild it with build.bat.");
         var input = await PrepareImageAsync(imagePath);
         var sw = Stopwatch.StartNew();
         onStage(Stage.Start, "");

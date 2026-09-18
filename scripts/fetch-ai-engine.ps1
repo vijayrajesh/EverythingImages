@@ -3,12 +3,12 @@
 # on any NVIDIA, AMD or Intel graphics card through the driver already on the
 # PC, and the same files run them on the processor, so nothing is downloaded
 # when the app runs except the models. Only the files describing needs are kept.
-# Build and checksum are pinned in llama-build.json. Skips the download when
+# Build and checksum are pinned in scriptslama-build.json. Skips the download when
 # that build is in place.
 
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
-$cfg = Get-Content (Join-Path $root 'llama-build.json') -Raw | ConvertFrom-Json
+$cfg = Get-Content (Join-Path $PSScriptRoot 'llama-build.json') -Raw | ConvertFrom-Json
 $dest = Join-Path $root 'runtime\ai-engine'
 $marker = Join-Path $dest 'build.txt'
 $keep = '^(llama-mtmd-cli\.exe|mtmd\.dll|llama\.dll|llama-common\.dll|ggml\.dll|ggml-base\.dll|ggml-vulkan\.dll|ggml-cpu-.*\.dll|libomp\.dll|LICENSE.*)$'

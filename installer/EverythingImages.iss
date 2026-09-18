@@ -13,13 +13,13 @@
 ; missing does it ask - a plain Yes/No before copying - and No still copies the
 ; app, which then shows .NET's own "Download it now" box when it is started.
 ;
-; Not run by hand - build-installer.bat publishes ..\dist first, reads the
+; Not run by hand - release.bat publishes ..\dist first, reads the
 ; version from src\EverythingImages\EverythingImages.csproj and passes it in as AppVersion.
 ; Compiling this on its own stops at the #error below rather than packaging a
 ; stale dist.
 
 #ifndef AppVersion
-  #error Run build-installer.bat instead of compiling this by hand
+  #error Run release.bat instead of compiling this by hand
 #endif
 
 #define AppName    "EverythingImages"

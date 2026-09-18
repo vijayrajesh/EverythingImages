@@ -124,7 +124,7 @@
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center">
                     <TextBlock Text="◈" FontSize="26" Foreground="{StaticResource Brand}" VerticalAlignment="Center" Margin="0,0,8,0" />
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock FontSize="16" FontWeight="Bold"><Run Text="Chroma" /><Run Text="Scan" Foreground="{StaticResource Brand}" /></TextBlock>
+                        <TextBlock FontSize="16" FontWeight="Bold"><Run Text="Everything" /><Run Text="Images" Foreground="{StaticResource Brand}" /></TextBlock>
                         <TextBlock Text="INSTANT LOCAL IMAGE SEARCH" FontSize="9" Foreground="{StaticResource Muted}" />
                     </StackPanel>
                 </StackPanel>

@@ -22,13 +22,13 @@ Needs the .NET 10 SDK.
 
 | Script | What it does |
 | --- | --- |
-| `run_wpf.bat` | Runs `dist\EverythingImages.exe`, or builds and runs a debug copy if there is none yet. |
-| `build_wpf.bat` | Fetches the AI engine, runs the tests, publishes `dist\EverythingImages.exe` + `dist\ai-engine\`. |
-| `build-installer.bat` | Builds everything that ships, into `release\`. `build-installer.bat nosetup` skips the one step that needs Inno Setup. |
+| `run.bat` | Runs `dist\EverythingImages.exe`, or builds and runs a debug copy if there is none yet. |
+| `build.bat` | Fetches the AI engine, runs the tests, publishes `dist\EverythingImages.exe` + `dist\ai-engine\`. |
+| `release.bat` | Builds everything that ships, into `release\`. `release.bat nosetup` skips the one step that needs Inno Setup. |
 
 ### What ships: portable, and only portable
 
-`build-installer.bat` makes three things, all the same copy of the app:
+`release.bat` makes three things, all the same copy of the app:
 
 | In `release\` | What it is |
 | --- | --- |
@@ -39,7 +39,7 @@ Needs the .NET 10 SDK.
 There is deliberately no installing setup: no Start menu entry, no uninstaller,
 nothing in the registry, nothing in Apps & features. The setup exe is only a
 friendlier way to unpack the same folder — it needs Inno Setup 6 to build
-(`winget install JRSoftware.InnoSetup`), and `build-installer.bat nosetup`
+(`winget install JRSoftware.InnoSetup`), and `release.bat nosetup`
 leaves it out.
 
 What makes a copy portable is `portable.txt` beside the exe
@@ -91,7 +91,7 @@ testing on a separate library).
 - `installer\EverythingImages.iss`: the Inno Setup script for the portable setup exe,
   and `installer\portable.txt`, the marker every package ships.
 - `scripts\fetch-ai-engine.ps1`: downloads the pinned AI engine into
-  `runtime\ai-engine` (build and checksum in `llama-build.json`).
+  `runtime\ai-engine` (build and checksum in `scriptslama-build.json`).
 
 ## License
 

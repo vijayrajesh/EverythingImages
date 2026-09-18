@@ -10,7 +10,7 @@
     <AssemblyName>EverythingImages</AssemblyName>
     <RootNamespace>EverythingImages</RootNamespace>
     <Product>EverythingImages</Product>
-    <!-- build-installer.bat reads the version from here. -->
+    <!-- release.bat reads the version from here. -->
     <Version>0.1.0</Version>
     <ApplicationIcon>app.ico</ApplicationIcon>
 
@@ -44,7 +44,7 @@
        build without it is fine: the app says what is missing and the rest works. -->
   <Target Name="RequireAiEngine" BeforeTargets="Publish">
     <Error Condition="!Exists('$(MSBuildThisFileDirectory)..\..\runtime\ai-engine\llama-mtmd-cli.exe')"
-           Text="runtime\ai-engine is missing. Run scripts\fetch-ai-engine.ps1 first - build_wpf.bat does." />
+           Text="runtime\ai-engine is missing. Run scripts\fetch-ai-engine.ps1 first - build.bat does." />
   </Target>
 
 </Project>

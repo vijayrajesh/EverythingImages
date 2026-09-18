@@ -80,7 +80,6 @@ public partial class OptionsWindow : Window
         const string noEngine = "The AI engine is missing from this copy of EverythingImages.";
 
         string gpuName, gpuState;
-        Button? gpuAction = null;
         if (!_s.GpuLoaded)
         {
             gpuName = "Looking for a graphics card...";
@@ -104,29 +103,14 @@ public partial class OptionsWindow : Window
             gpuState = "No card answered. A graphics driver that is out of date is the usual reason.";
         }
 
-        // A portable copy made before the engine shipped may still be carrying
-        // the old GPU download in its data folder. Nothing uses it; this is the
-        // only way to get the space back.
-        if (_s.OldGpuDownloadBytes is > 0 and var stale)
-        {
-            gpuState += $"\nAn older version left {Format.Bytes(stale)} of GPU support here. Nothing uses it now.";
-            gpuAction = Btn($"Free {Format.Bytes(stale)}", async (_, _) =>
-            {
-                if (MessageBox.Show(this, $"Delete the {Format.Bytes(stale)} of GPU support left by an older version?\n\n" +
-                        "Nothing uses it: this copy runs the models with the engine beside its exe.",
-                        "Old GPU download", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    await _s.DeleteOldGpuDownloadAsync();
-            }, "Ghost");
-        }
-
         ProcessorPanel.Children.Add(Card("GPU", gpuName, "Runs the models on the graphics card: several times faster.",
-            gpuState, gpuAction, chosen == "gpu", g.HasGpu, () => _s.ChooseProcessor("gpu")));
+            gpuState, chosen == "gpu", g.HasGpu, () => _s.ChooseProcessor("gpu")));
         ProcessorPanel.Children.Add(Card("CPU", "Any PC", "Runs the models on the processor. Slower, but works on any PC.",
-            GpuDetector.EngineReady ? "✓ Ready" : noEngine, null, chosen == "cpu", GpuDetector.EngineReady,
+            GpuDetector.EngineReady ? "✓ Ready" : noEngine, chosen == "cpu", GpuDetector.EngineReady,
             () => _s.ChooseProcessor("cpu")));
     }
 
-    Border Card(string title, string tag, string desc, string state, Button? action, bool selected, bool enabled, Action choose)
+    Border Card(string title, string tag, string desc, string state, bool selected, bool enabled, Action choose)
     {
         var body = new StackPanel();
         var head = new DockPanel();
@@ -142,14 +126,7 @@ public partial class OptionsWindow : Window
         var d = Text(desc, 12);
         d.Margin = new Thickness(0, 6, 0, 8);
         body.Children.Add(d);
-        var foot = new DockPanel();
-        if (action != null)
-        {
-            DockPanel.SetDock(action, Dock.Right);
-            foot.Children.Add(action);
-        }
-        foot.Children.Add(new TextBlock { Text = state, FontSize = 11.5, Foreground = Res("Muted"), TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center });
-        body.Children.Add(foot);
+        body.Children.Add(new TextBlock { Text = state, FontSize = 11.5, Foreground = Res("Muted"), TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center });
 
         var border = new Border
         {
