@@ -1,0 +1,22 @@
+# Build output
+bin/
+obj/
+dist/
+*.user
+.vs/
+TestResults/
+
+# Downloaded at build time by scripts/fetch-ai-engine.ps1 (a 30 MB zip, ~73 MB unpacked)
+runtime/
+
+# Big files that never belong in git
+*.gguf
+*.onnx
+*.zip
+*.7z
+*.exe
+*.dll
+*.pdb
+
+# build-installer.bat output (portable folder, zip, setup exe)
+release/

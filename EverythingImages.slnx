@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EverythingImages.Core/EverythingImages.Core.csproj" />
+    <Project Path="src/EverythingImages/EverythingImages.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EverythingImages.Tests/EverythingImages.Tests.csproj" />
+  </Folder>
+</Solution>

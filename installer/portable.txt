@@ -1,0 +1,12 @@
+This file is what makes EverythingImages portable: with it here, EverythingImages keeps its
+index, its settings and the AI models it downloads in the "data" folder beside
+EverythingImages.exe, instead of in your Windows user folders. The whole folder is the
+app: copy it to another PC or a USB drive and everything comes too, delete it
+and nothing is left behind.
+
+Delete this file to use the normal per-user folders instead
+(%APPDATA%\EverythingImages).
+
+EverythingImages needs the .NET 10 Desktop Runtime. If this PC does not have it,
+EverythingImages.exe says so when started and offers the download, or get it here:
+https://dotnet.microsoft.com/download/dotnet/10.0

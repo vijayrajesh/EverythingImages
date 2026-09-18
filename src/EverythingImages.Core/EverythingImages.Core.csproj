@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Everything that isn't UI: index and search, colours, scanning, OCR,
+       the model catalogue, downloads, GPU/CPU and describing. The windows10
+       TFM gives direct access to Windows.Media.Ocr and Windows.Graphics.Imaging.
+       llama-build.json (the pinned engine build) is read by scripts\fetch-ai-engine.ps1. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>EverythingImages.Core</RootNamespace>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+</Project>

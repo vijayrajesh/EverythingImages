@@ -1,0 +1,43 @@
+<Window x:Class="EverythingImages.FoldersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Folders" Width="680" SizeToContent="Height" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
+        Background="White" FontFamily="Segoe UI Variable Text, Segoe UI" FontSize="13">
+    <StackPanel Margin="22,18,22,18">
+        <TextBlock Text="Folders" FontSize="18" FontWeight="Bold" />
+        <TextBlock Style="{StaticResource MutedText}" Margin="0,4,0,12"
+                   Text="EverythingImages scans these folders (and their subfolders) as soon as you add them, and again each time it starts." />
+        <DockPanel>
+            <Button DockPanel.Dock="Left" Style="{StaticResource Primary}" Content="＋ Browse and add..." Click="Browse_Click" />
+            <Button DockPanel.Dock="Right" Content="Add" Click="AddTyped_Click" Margin="6,0,0,0" />
+            <TextBox x:Name="PathBox" Margin="10,0,0,0" KeyDown="PathBox_KeyDown" ToolTip="Or paste a folder path, e.g. C:\Users\me\Pictures" />
+        </DockPanel>
+        <Border Margin="0,12,0,0" BorderBrush="{StaticResource Line}" BorderThickness="1" CornerRadius="8" MinHeight="60" MaxHeight="280">
+            <Grid>
+                <TextBlock x:Name="NoneText" Text="No folders yet." Style="{StaticResource MutedText}" Margin="14" />
+                <ItemsControl x:Name="FolderList">
+                    <ItemsControl.Template>
+                        <ControlTemplate><ScrollViewer VerticalScrollBarVisibility="Auto"><ItemsPresenter /></ScrollViewer></ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Margin="12,6,6,6">
+                                <Button DockPanel.Dock="Right" Style="{StaticResource Ghost}" Content="✕" Tag="{Binding}" Click="Remove_Click"
+                                        ToolTip="Remove from EverythingImages (files are not touched)" />
+                                <TextBlock Text="{Binding StringFormat='🗀  {0}'}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+        <DockPanel Margin="0,16,0,0">
+            <Button DockPanel.Dock="Left" Style="{StaticResource Ghost}" Content="Reset index" Click="Reset_Click" x:Name="ResetButton"
+                    ToolTip="Remove every indexed image and scan again; folders are kept" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ScanButton" Content="Scan now" Click="Scan_Click" Margin="0,0,8,0" />
+                <Button Style="{StaticResource Primary}" Content="Done" IsDefault="True" IsCancel="True" Click="Done_Click" />
+            </StackPanel>
+        </DockPanel>
+    </StackPanel>
+</Window>

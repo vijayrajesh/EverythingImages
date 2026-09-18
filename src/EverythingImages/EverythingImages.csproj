@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>EverythingImages</AssemblyName>
+    <RootNamespace>EverythingImages</RootNamespace>
+    <Product>EverythingImages</Product>
+    <!-- build-installer.bat reads the version from here. -->
+    <Version>0.1.0</Version>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+
+    <!-- One small exe that uses the installed .NET 10 Desktop Runtime. -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EverythingImages.Core\EverythingImages.Core.csproj" />
+    <Resource Include="app.ico" />
+  </ItemGroup>
+
+  <!-- The AI engine (llama.cpp's Vulkan build, which runs the models on the GPU
+       or the CPU), fetched by scripts\fetch-ai-engine.ps1 into runtime\ai-engine.
+       It sits beside the exe - never inside the single file, llama.cpp being a
+       separate program - which is where Paths.EngineDir() looks for it. -->
+  <ItemGroup>
+    <None Include="..\..\runtime\ai-engine\**\*"
+          Link="ai-engine\%(RecursiveDir)%(Filename)%(Extension)"
+          CopyToOutputDirectory="PreserveNewest"
+          CopyToPublishDirectory="PreserveNewest"
+          ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <!-- Publishing without the engine gives an exe that cannot describe anything,
+       and the fault would only show up on the PC it was shipped to. A plain
+       build without it is fine: the app says what is missing and the rest works. -->
+  <Target Name="RequireAiEngine" BeforeTargets="Publish">
+    <Error Condition="!Exists('$(MSBuildThisFileDirectory)..\..\runtime\ai-engine\llama-mtmd-cli.exe')"
+           Text="runtime\ai-engine is missing. Run scripts\fetch-ai-engine.ps1 first - build_wpf.bat does." />
+  </Target>
+
+</Project>
