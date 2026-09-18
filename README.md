@@ -4,6 +4,10 @@ Instant local image search for Windows: by filename, text in images (Windows
 OCR), colours and AI descriptions (Liquid AI vision models, on the GPU or the
 CPU). Everything stays on the PC.
 
+[![Watch the EverythingImages demo on YouTube](https://img.youtube.com/vi/KKJuLr2kxgk/maxresdefault.jpg)](https://www.youtube.com/watch?v=KKJuLr2kxgk)
+
+▶ [Watch the demo on YouTube](https://www.youtube.com/watch?v=KKJuLr2kxgk)
+
 The AI engine ships beside the exe and runs the models on any NVIDIA, AMD or
 Intel card through the driver already on the PC, so there is nothing to
 download but the models themselves.
