@@ -18,7 +18,14 @@ so Windows SmartScreen may warn the first time it runs.
 
 ## Build and run
 
-Needs the .NET 10 SDK.
+Needs Windows 10 (2004+) and the .NET 10 SDK. **Full guide, with editors, tests and
+troubleshooting: [DEVELOPING.md](DEVELOPING.md).**
+
+```
+git clone https://github.com/vijayrajesh/EverythingImages.git
+cd EverythingImages
+build.bat
+```
 
 | Script | What it does |
 | --- | --- |
