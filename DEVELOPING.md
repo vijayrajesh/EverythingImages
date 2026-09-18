@@ -38,7 +38,7 @@ dist\EverythingImages.exe
 
 1. **Fetches the AI engine** (`scripts\fetch-ai-engine.ps1`). It downloads the
    llama.cpp Vulkan build pinned in `scripts\llama-build.json`, checks its SHA-256,
-   and keeps the 23 files the app needs in `runtime\ai-engine\`. Later runs see it's
+   and keeps only the files the app needs (about 72 MB) in `runtime\ai-engine\`. Later runs see it's
    there and skip the download.
 2. **Runs the tests** (`dotnet test`, Release).
 3. **Publishes** `dist\EverythingImages.exe` (one framework-dependent exe) with
