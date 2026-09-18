@@ -49,6 +49,8 @@ folder can move to another PC or a USB drive. Delete it to use the normal
 per-user folders instead.
 
 The version comes from `<Version>` in `src\EverythingImages\EverythingImages.csproj`.
+Publishing a new version, step by step: [RELEASING.md](RELEASING.md). What changed in each
+version: [CHANGELOG.md](CHANGELOG.md).
 
 ### The .NET runtime
 
